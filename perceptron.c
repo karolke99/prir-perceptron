@@ -135,6 +135,7 @@ int main() {
 
     fclose(file);
 
+    int start = omp_get_wtime();
     // Normalizacja danych zgodnie ze standard scalerem
     standardScaler(dataSet, dataSize);
 
@@ -165,6 +166,7 @@ int main() {
             trainPerceptron(&perceptron, trainingSet[i], learningRate);
         }
     }
+    printf("Time: %f\n", omp_get_wtime() - start);
 
     // Testowanie perceptronu na zbiorze testowym
     int correctPredictions = 0;
